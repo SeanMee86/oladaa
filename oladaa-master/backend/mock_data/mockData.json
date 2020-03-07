@@ -1,0 +1,22 @@
+{
+  "braxton@beativities.com":{
+    "fatBurn":"132",
+    "cardio":"30",
+    "peak":"10"
+  },
+  "bernstein@beativities.com":{
+    "fatBurn":"20",
+    "cardio":"20",
+    "peak":"0"
+  },
+  "ellie@beativities.com":{
+    "fatBurn":"0",
+    "cardio":"0",
+    "peak":"0"
+  },
+  "sam@beativities.com":{
+    "fatBurn":null,
+    "cardio":null,
+    "peak":null
+  }
+}
