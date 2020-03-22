@@ -23,7 +23,7 @@ if(isset($userInfo) && !empty($userInfo)){
     $password = password_hash($userInfo["password"],PASSWORD_DEFAULT);
 
     //Insert the new users information into the database.
-    $sql = "INSERT INTO `user_table` (name, password, email) VALUES ('$username','$password','$email')";
+    $sql = "INSERT INTO `user_table` (username, password, email) VALUES ('$username','$password','$email')";
     $result = mysqli_query($conn, $sql);
 
     //Send success message on successful registration

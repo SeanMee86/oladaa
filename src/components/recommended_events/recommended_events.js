@@ -50,4 +50,4 @@ function mapStateToProps(state){
     }
 
 }
-export default connect(mapStateToProps, { null })(RecommendedEventsList);
+export default connect(mapStateToProps)(RecommendedEventsList);

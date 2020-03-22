@@ -12,7 +12,8 @@ const instance = axios.create({
 /**
  * @type {string}
  */
-const base_url = '../backend/server';
+// const base_url = '../backend/server';
+const base_url = 'http://localhost/server';
 /**
  * @param username
  * @param password
@@ -187,6 +188,7 @@ export function submit_interests(idArray) {
         if(idArray.length >= 3) {
             instance.post(`${base_url}/insert_interests.php`, {idArray}).then(resp => {
                 //Create a client-side response to inform the user that their interests were added successfully
+                console.log(resp.data);
             }).catch(err => {
                 //Create a client-side response to inform the user that their interests were not added successfully
             });

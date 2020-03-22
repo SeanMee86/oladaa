@@ -19,7 +19,7 @@ if(isset($userInfo) && !empty($userInfo)){
     $password = $userInfo["password"];
 
     //Select the user id from our main user table based on the username and password provided.
-    $sql = "SELECT `id`,`password` FROM `user_table` WHERE `name`='$username'";
+    $sql = "SELECT `id`,`password` FROM `user_table` WHERE `username`='$username'";
     $result = mysqli_query($conn, $sql);
 
     //Check to make sure the password hash in our database and the password provided are compatible
