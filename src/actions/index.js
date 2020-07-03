@@ -7,13 +7,16 @@ import { AUTH_ERROR, AUTH_USER, UNAUTH_USER, FETCH_EVENTS, SAVE_LOCATION, FETCH_
  * @type {AxiosInstance}
  */
 const instance = axios.create({
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
 });
 /**
  * @type {string}
  */
 // const base_url = '../backend/server';
 const base_url = 'http://localhost/server';
+let userId;
 /**
  * @param username
  * @param password
@@ -34,8 +37,10 @@ export function register_user({ username, password, email }) {
                     if (resp.data === 0) {
                         //Create a client-side response for the user based on invalid login credentials
                     }
-                    else if(resp.data === 1){
+                    else if(resp.data['val'] === 1){
                         browserHistory.push('/select_interests');
+                        console.log(resp);
+                        userId = resp.data.id;
                     }
                     else{
                         //Create a client-side response to inform the user that they're already logged in based on the username provided
@@ -64,8 +69,9 @@ export function login_user({ username, password}) {
             if(resp.data === 0){
                 //Create a client-side response for the user based on invalid login credentials
             }
-            else if(resp.data === 1){
+            else if(resp.data["val"] === 1){
                 browserHistory.push('/app/welcome_user');
+                console.log(resp);
             }
             else{
                 //Create a client-side response to inform the user that they're already logged in based on the username provided
@@ -119,6 +125,10 @@ export function fetchEvents(coords){
                     crossDomain: true,
                     method: 'GET',
                     url: meetup_url,
+                    headers: {
+                        'SameSite': 'None',
+                        'Secure': '*'
+                    },
                     success: function(response){
                         dispatch({
                             type: FETCH_EVENTS,
@@ -186,7 +196,7 @@ export function storeUserLocation(location){
 export function submit_interests(idArray) {
     return function () {
         if(idArray.length >= 3) {
-            instance.post(`${base_url}/insert_interests.php`, {idArray}).then(resp => {
+            instance.post(`${base_url}/insert_interests.php`, {idArray, userId}).then(resp => {
                 //Create a client-side response to inform the user that their interests were added successfully
                 console.log(resp.data);
             }).catch(err => {

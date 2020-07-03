@@ -1,5 +1,4 @@
 <?php
-//Start the users session.
 session_start();
 
 //Set headers to avoid CORS errors
@@ -28,7 +27,7 @@ if(isset($userInfo) && !empty($userInfo)){
 
         //If a row is returned set the id key in the Global Session variable to to the user id returned from our query.
         if(password_verify($password, $row["password"])){
-            $_SESSION["id"] = $row["id"];
+            $_SESSION["id"] = intval($row["id"]);
         }
         //If it fails return a 0 to the axios call.
     }
@@ -44,6 +43,6 @@ else{
 }
 //If the session id is set send a success message.
 if(isset($_SESSION["id"])){
-    $smsg = 1;
+    $smsg = json_encode(array('val' => 1, 'id' => $_SESSION["id"]));
     echo $smsg;
 }

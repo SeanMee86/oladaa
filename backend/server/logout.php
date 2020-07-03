@@ -1,5 +1,4 @@
 <?php
-//Access the current session.
 session_start();
 
 //Destroy the session key.

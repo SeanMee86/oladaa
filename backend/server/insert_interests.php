@@ -1,5 +1,4 @@
 <?php
-//Start the session.
 session_start();
 
 //Set headers to avoid CORS errors
@@ -15,7 +14,8 @@ $userInterests = json_decode(file_get_contents('php://input'), true);
 if(!empty($userInterests)){
 
     //Get user id from the user session.
-    $userId = $_SESSION["id"];
+//    $userId = $_SESSION["id"];
+    $userId = $userInterests["userId"];
 
     //Pull activity id out of the axios object.  Activity id will be an array.
     $activityId = $userInterests['idArray'];
@@ -34,6 +34,6 @@ if(!empty($userInterests)){
     if($result){
         echo "Interests Sent";
     }else{
-        echo mysqli_error($conn);
+        echo json_encode($sql);
     }
 }

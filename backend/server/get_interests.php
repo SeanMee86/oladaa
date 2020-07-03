@@ -1,5 +1,4 @@
 <?php
-//Start our session
 session_start();
 
 //Set headers to disable CORS errors
